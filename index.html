@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <button onclick="playTone()">Play Tone</button>
+
+    <script>
+      function playTone() {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioCtx.createOscillator();
+
+        oscillator.type = "sine";      // simplest waveform
+        oscillator.frequency.value = 440; // A4 note in Hz
+
+        oscillator.connect(audioCtx.destination);
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 2); // play for 2 seconds
+      }
+    </script>
+  </body>
+</html>
